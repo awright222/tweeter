@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create a New Tweet</h2>
+<form method="POST" class="tweet">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.author.label }}<br>
+        {{ form.author(size=32) }}
+        {% if form.author.errors %}
+            <ul>
+                {% for error in form.author.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        {{ form.tweet.label }}<br>
+        {{ form.tweet(size=64) }}
+        {% if form.tweet.errors %}
+            <ul>
+                {% for error in form.tweet.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+{% endblock %}

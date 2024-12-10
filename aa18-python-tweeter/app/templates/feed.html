@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="feed_container">
+    {% for tweet in tweets %}
+    <div class="tweet">
+        <p>{{ tweet.author }} tweeted on {{ tweet.date }} ...</p>
+        <p>"{{ tweet.tweet }}"</p>
+        <p style="color: {% if tweet.likes > 525000 %}orange{% else %}white{% endif %};">
+            Likes: {{ tweet.likes / 1000 }}k
+        </p>
+        <form action="{{ url_for('like_tweet', tweet_id=tweet.id) }}" method="post">
+            <button type="submit">Like</button>
+        </form>
+        <form action="{{ url_for('unlike_tweet', tweet_id=tweet.id) }}" method="post">
+            <button type="submit">Unlike</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
